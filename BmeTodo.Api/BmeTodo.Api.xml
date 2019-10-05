@@ -35,7 +35,7 @@
             </summary>
             <param name="id">Módosítandó teendő azonosítója</param>
             <param name="todo">Módosítandó teendő adatai</param>
-            <returns>Visszatér a módosítptt teendővel</returns>
+            <returns>Visszatér a módosított teendővel</returns>
         </member>
         <member name="M:BmeTodo.Api.Controllers.TodoController.Delete(System.Int32)">
             <summary>
