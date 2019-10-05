@@ -9,13 +9,13 @@
             Teendőkkel kapcsolatos funkciók
             </summary>
         </member>
-        <member name="M:BmeTodo.Api.Controllers.TodoController.Get">
+        <member name="M:BmeTodo.Api.Controllers.TodoController.GetTodos">
             <summary>
             Az összes teendő lekérdezése
             </summary>
             <returns>Visszatér a teendők listájával</returns>
         </member>
-        <member name="M:BmeTodo.Api.Controllers.TodoController.Get(System.Int32)">
+        <member name="M:BmeTodo.Api.Controllers.TodoController.GetTodo(System.Int32)">
             <summary>
             Egy teendő lekérdezése a megadott azonosítóval
             </summary>

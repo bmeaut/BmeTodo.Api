@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using BmeTodo.Api.Exceptions;
 using BmeTodo.Api.Services;
+using BmeTodo.Api.Swagger;
 using Hellang.Middleware.ProblemDetails;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -14,6 +17,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace BmeTodo.Api
 {
@@ -31,9 +35,12 @@ namespace BmeTodo.Api
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddSingleton<TodoService>();
-            services.AddSwaggerDocument(o => 
+            services.AddSwaggerGen(o =>
             {
-                o.Title = "BME Todo Service";
+                o.SwaggerDoc("v1", new Info { Title = "BME Todo Service", Version = "v1" });
+                o.SchemaFilter<EnumFilter>();
+                o.DescribeAllEnumsAsStrings();
+                o.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, $"{Assembly.GetExecutingAssembly().GetName().Name}.xml"));
             });
             services.AddProblemDetails(o => o.Map<EntityNotFoundException>(ex => new StatusCodeProblemDetails(StatusCodes.Status404NotFound)));
         }
@@ -53,8 +60,12 @@ namespace BmeTodo.Api
 
             app.UseProblemDetails();
 
-            app.UseOpenApi();
-            app.UseSwaggerUi3();
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                c.RoutePrefix = string.Empty;
+            });
             app.UseHttpsRedirection();
             app.UseMvc();
         }

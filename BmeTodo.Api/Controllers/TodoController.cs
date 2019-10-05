@@ -28,7 +28,7 @@ namespace BmeTodo.Api.Controllers
         /// </summary>
         /// <returns>Visszatér a teendők listájával</returns>
         [HttpGet]
-        public ActionResult<IEnumerable<TodoItem>> Get()
+        public ActionResult<IEnumerable<TodoItem>> GetTodos()
         {
             return _todoService.GetTodos().ToList();
         }
@@ -39,7 +39,7 @@ namespace BmeTodo.Api.Controllers
         /// <param name="id">Lekérdezendő teendő azonosítója</param>
         /// <returns>Visszatér a megadott azonosítóval rendelkező teendővel</returns>
         [HttpGet("{id}")]
-        public ActionResult<TodoItem> Get(int id)
+        public ActionResult<TodoItem> GetTodo(int id)
         {
             return _todoService.GetTodo(id);
         }
@@ -54,7 +54,7 @@ namespace BmeTodo.Api.Controllers
         public IActionResult Post([FromBody] TodoItem todo)
         {
             var id = _todoService.AddTodo(todo);
-            return CreatedAtAction(nameof(Get), new { id }, todo);
+            return CreatedAtAction(nameof(GetTodo), new { id }, todo);
         }
 
         /// <summary>
