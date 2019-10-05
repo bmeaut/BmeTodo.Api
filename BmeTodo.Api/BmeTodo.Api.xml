@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BmeTodo.Api</name>
+    </assembly>
+    <members>
+        <member name="T:BmeTodo.Api.Controllers.TodoController">
+            <summary>
+            Teendőkkel kapcsolatos funkciók
+            </summary>
+        </member>
+        <member name="M:BmeTodo.Api.Controllers.TodoController.Get">
+            <summary>
+            Az összes teendő lekérdezése
+            </summary>
+            <returns>Visszatér a teendők listájával</returns>
+        </member>
+        <member name="M:BmeTodo.Api.Controllers.TodoController.Get(System.Int32)">
+            <summary>
+            Egy teendő lekérdezése a megadott azonosítóval
+            </summary>
+            <param name="id">Lekérdezendő teendő azonosítója</param>
+            <returns>Visszatér a megadott azonosítóval rendelkező teendővel</returns>
+        </member>
+        <member name="M:BmeTodo.Api.Controllers.TodoController.Post(BmeTodo.Api.Models.TodoItem)">
+            <summary>
+            Új teendő felvétele a listába
+            </summary>
+            <param name="todo">Az felvenni kívánt új teendő adatai</param>
+            <returns>Visszatér a létrehozott új teendővel</returns>
+        </member>
+        <member name="M:BmeTodo.Api.Controllers.TodoController.Put(System.Int32,BmeTodo.Api.Models.TodoItem)">
+            <summary>
+            Megadott azonosítóval rendelkező teendő módosítása
+            </summary>
+            <param name="id">Módosítandó teendő azonosítója</param>
+            <param name="todo">Módosítandó teendő adatai</param>
+            <returns>Visszatér a módosítptt teendővel</returns>
+        </member>
+        <member name="M:BmeTodo.Api.Controllers.TodoController.Delete(System.Int32)">
+            <summary>
+            Megadott azonosítóval rendelkező teendő törlése
+            </summary>
+            <param name="id">Törlendő teendő azonosítója</param>
+        </member>
+        <member name="T:BmeTodo.Api.Models.Priority">
+            <summary>
+            Prioritási szintek
+            </summary>
+        </member>
+        <member name="F:BmeTodo.Api.Models.Priority.High">
+            <summary>
+            Magas prioritási szint
+            </summary>
+        </member>
+        <member name="F:BmeTodo.Api.Models.Priority.Normal">
+            <summary>
+            Normál prioritási szint
+            </summary>
+        </member>
+        <member name="F:BmeTodo.Api.Models.Priority.Low">
+            <summary>
+            Alacsony prioritási szint
+            </summary>
+        </member>
+        <member name="T:BmeTodo.Api.Models.TodoItem">
+            <summary>
+            Teendő adatai
+            </summary>
+        </member>
+        <member name="P:BmeTodo.Api.Models.TodoItem.Id">
+            <summary>
+            Teendő azonosítója
+            </summary>
+        </member>
+        <member name="P:BmeTodo.Api.Models.TodoItem.IsDone">
+            <summary>
+            Teendő készültsági állapota
+            </summary>
+        </member>
+        <member name="P:BmeTodo.Api.Models.TodoItem.Title">
+            <summary>
+            Teendő címe
+            </summary>
+        </member>
+        <member name="P:BmeTodo.Api.Models.TodoItem.Description">
+            <summary>
+            Teendő leírása
+            </summary>
+        </member>
+        <member name="P:BmeTodo.Api.Models.TodoItem.Deadline">
+            <summary>
+            Teendő határideje
+            </summary>
+        </member>
+        <member name="P:BmeTodo.Api.Models.TodoItem.Priority">
+            <summary>
+            Teendő prioritása
+            </summary>
+        </member>
+    </members>
+</doc>
