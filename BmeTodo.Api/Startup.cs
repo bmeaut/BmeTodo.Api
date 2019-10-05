@@ -31,10 +31,7 @@ namespace BmeTodo.Api
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddSingleton<TodoService>();
-            services.AddSwaggerDocument(o => 
-            {
-                o.Title = "BME Todo Service";
-            });
+            services.AddSwaggerDocument(o => o.Title = "BME Todo Service");
             services.AddProblemDetails(o => o.Map<EntityNotFoundException>(ex => new StatusCodeProblemDetails(StatusCodes.Status404NotFound)));
         }
 
