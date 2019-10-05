@@ -46,10 +46,10 @@ namespace BmeTodo.Api.Services
         public TodoItem AddTodo(TodoItem todoItem)
         {
             // nem szálbiztos, de ez most mind1
-            var nextId = _todos.OrderByDescending(t => t.Id).FirstOrDefault()?.Id ?? 1;
+            var nextId = _todos.OrderByDescending(t => t.Id).FirstOrDefault()?.Id + 1 ?? 1;
             _todos.Add(todoItem);
             todoItem.Id = nextId;
-            return nextId;
+            return todoItem;
         }
 
         public TodoItem UpdateTodo(int id, TodoItem todoItem)
