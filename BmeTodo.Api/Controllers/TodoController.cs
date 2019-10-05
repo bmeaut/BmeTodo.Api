@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using BmeTodo.Api.Models;
 using BmeTodo.Api.Services;
@@ -49,6 +50,7 @@ namespace BmeTodo.Api.Controllers
         /// <param name="todo">Az felvenni kívánt új teendő adatai</param>
         /// <returns>Visszatér a létrehozott új teendővel</returns>
         [HttpPost]
+        [ProducesResponseType(typeof(TodoItem), (int)HttpStatusCode.Created)]
         public IActionResult Post([FromBody] TodoItem todo)
         {
             var id = _todoService.AddTodo(todo);
@@ -60,7 +62,7 @@ namespace BmeTodo.Api.Controllers
         /// </summary>
         /// <param name="id">Módosítandó teendő azonosítója</param>
         /// <param name="todo">Módosítandó teendő adatai</param>
-        /// <returns>Visszatér a módosítptt teendővel</returns>
+        /// <returns>Visszatér a módosított teendővel</returns>
         [HttpPut("{id}")]
         public ActionResult<TodoItem> Put(int id, [FromBody] TodoItem todo)
         {
@@ -72,6 +74,7 @@ namespace BmeTodo.Api.Controllers
         /// </summary>
         /// <param name="id">Törlendő teendő azonosítója</param>
         [HttpDelete("{id}")]
+        [ProducesResponseType((int)HttpStatusCode.NoContent)]
         public IActionResult Delete(int id)
         {
             _todoService.DeleteTodo(id);
