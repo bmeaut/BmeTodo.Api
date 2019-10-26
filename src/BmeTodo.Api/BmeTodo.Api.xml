@@ -22,14 +22,14 @@
             <param name="id">Lekérdezendő teendő azonosítója</param>
             <returns>Visszatér a megadott azonosítóval rendelkező teendővel</returns>
         </member>
-        <member name="M:BmeTodo.Api.Controllers.TodoController.Post(BmeTodo.Api.Models.TodoItem)">
+        <member name="M:BmeTodo.Api.Controllers.TodoController.AddTodo(BmeTodo.Api.Models.TodoItem)">
             <summary>
             Új teendő felvétele a listába
             </summary>
             <param name="todo">Az felvenni kívánt új teendő adatai</param>
             <returns>Visszatér a létrehozott új teendővel</returns>
         </member>
-        <member name="M:BmeTodo.Api.Controllers.TodoController.Put(System.Int32,BmeTodo.Api.Models.TodoItem)">
+        <member name="M:BmeTodo.Api.Controllers.TodoController.UpdateTodo(System.Int32,BmeTodo.Api.Models.TodoItem)">
             <summary>
             Megadott azonosítóval rendelkező teendő módosítása
             </summary>
@@ -37,7 +37,7 @@
             <param name="todo">Módosítandó teendő adatai</param>
             <returns>Visszatér a módosított teendővel</returns>
         </member>
-        <member name="M:BmeTodo.Api.Controllers.TodoController.Delete(System.Int32)">
+        <member name="M:BmeTodo.Api.Controllers.TodoController.DeleteTodo(System.Int32)">
             <summary>
             Megadott azonosítóval rendelkező teendő törlése
             </summary>

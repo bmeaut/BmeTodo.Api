@@ -36,9 +36,11 @@ namespace BmeTodo.Api
             services.AddSwaggerGen(o =>
             {
                 o.SwaggerDoc("v1", new OpenApiInfo { Title = "BME Todo Service", Version = "v1" });
-                o.SchemaFilter<AutoRestSchemaFilter>();
                 o.DescribeAllEnumsAsStrings();
                 o.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, $"{Assembly.GetExecutingAssembly().GetName().Name}.xml"));
+                // workaroundok az AutoRest generátor miatt UWP projektben
+                o.CustomOperationIds(e => $"{e.ActionDescriptor.RouteValues["action"]}"); 
+                o.SchemaFilter<AutoRestSchemaFilter>();
             });
 
             services.AddProblemDetails(o => o.Map<EntityNotFoundException>(ex => new StatusCodeProblemDetails(StatusCodes.Status404NotFound)));
@@ -59,7 +61,11 @@ namespace BmeTodo.Api
             app.UseProblemDetails();
             app.UseRouting();
 
-            app.UseSwagger();
+            app.UseSwagger(c =>
+            {
+                // workaround az AutoRest generátor miatt UWP projektben
+                c.SerializeAsV2 = true;
+            });
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "BME Todo Service");

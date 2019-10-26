@@ -51,7 +51,7 @@ namespace BmeTodo.Api.Controllers
         /// <returns>Visszatér a létrehozott új teendővel</returns>
         [HttpPost]
         [ProducesResponseType(typeof(TodoItem), (int)HttpStatusCode.Created)]
-        public IActionResult Post([FromBody] TodoItem todo)
+        public IActionResult AddTodo([FromBody] TodoItem todo)
         {
             var id = _todoService.AddTodo(todo);
             return CreatedAtAction(nameof(GetTodo), new { id }, todo);
@@ -64,7 +64,7 @@ namespace BmeTodo.Api.Controllers
         /// <param name="todo">Módosítandó teendő adatai</param>
         /// <returns>Visszatér a módosított teendővel</returns>
         [HttpPut("{id}")]
-        public ActionResult<TodoItem> Put(int id, [FromBody] TodoItem todo)
+        public ActionResult<TodoItem> UpdateTodo(int id, [FromBody] TodoItem todo)
         {
             return _todoService.UpdateTodo(id, todo);
         }
@@ -75,7 +75,7 @@ namespace BmeTodo.Api.Controllers
         /// <param name="id">Törlendő teendő azonosítója</param>
         [HttpDelete("{id}")]
         [ProducesResponseType((int)HttpStatusCode.NoContent)]
-        public IActionResult Delete(int id)
+        public IActionResult DeleteTodo(int id)
         {
             _todoService.DeleteTodo(id);
             return NoContent();
