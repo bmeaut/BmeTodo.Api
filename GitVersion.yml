@@ -1,0 +1,8 @@
+assembly-versioning-scheme: MajorMinorPatchTag # ez a tag nem az a tag
+assembly-file-versioning-scheme: MajorMinorPatchTag # ez a tag nem az a tag
+commit-message-incrementing: Disabled
+mode: ContinuousDeployment # minden commit növeli a legutolsó git tag-hez képest a verzió 4. számát  
+#increment: None # default növelódne a minor valami miatt 
+#branches: 
+#    master:
+#        increment: None # default növelódne a minor valami miatt 

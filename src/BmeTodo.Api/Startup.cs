@@ -35,7 +35,11 @@ namespace BmeTodo.Api
 
             services.AddSwaggerGen(o =>
             {
-                o.SwaggerDoc("v1", new OpenApiInfo { Title = "BME Todo Service", Version = "v1" });
+                o.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "BME Todo Service",
+                    Version = Assembly.GetExecutingAssembly().GetName().Version.ToString()
+                });
                 o.DescribeAllEnumsAsStrings();
                 o.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, $"{Assembly.GetExecutingAssembly().GetName().Name}.xml"));
                 // workaroundok az AutoRest generátor miatt UWP projektben
