@@ -4,3 +4,7 @@
 Segéd backend a Szoftverfejlesztés laboratórium 2 (VIAUAD01) tárgy 5. (XAML 2) laborjához
 
 https://bmetodoservice.azurewebsites.net
+
+### Contributing
+
+Szívesen vesszük a kódbázissal vagy akár a laborral/tárggyal kapcsolatos észrevételeiteket és javításokat Issue és Pull Request formájában.
