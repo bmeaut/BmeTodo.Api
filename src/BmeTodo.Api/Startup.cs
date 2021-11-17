@@ -1,20 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
+
 using BmeTodo.Api.Exceptions;
 using BmeTodo.Api.Services;
 using BmeTodo.Api.Swagger;
+
 using Hellang.Middleware.ProblemDetails;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+
+using Newtonsoft.Json.Converters;
 
 namespace BmeTodo.Api
 {
@@ -29,7 +31,8 @@ namespace BmeTodo.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers()
+                .AddNewtonsoftJson(c => c.SerializerSettings.Converters.Add(new StringEnumConverter()));
 
             services.AddSingleton<TodoService>();
 
@@ -40,12 +43,13 @@ namespace BmeTodo.Api
                     Title = "BME Todo Service",
                     Version = Assembly.GetExecutingAssembly().GetName().Version.ToString()
                 });
-                o.DescribeAllEnumsAsStrings();
                 o.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, $"{Assembly.GetExecutingAssembly().GetName().Name}.xml"));
                 // workaroundok az AutoRest generátor miatt UWP projektben
-                o.CustomOperationIds(e => $"{e.ActionDescriptor.RouteValues["action"]}"); 
+                o.CustomOperationIds(e => $"{e.ActionDescriptor.RouteValues["action"]}");
                 o.SchemaFilter<AutoRestSchemaFilter>();
             });
+
+            services.AddSwaggerGenNewtonsoftSupport();
 
             services.AddProblemDetails(o => o.Map<EntityNotFoundException>(ex => new StatusCodeProblemDetails(StatusCodes.Status404NotFound)));
         }

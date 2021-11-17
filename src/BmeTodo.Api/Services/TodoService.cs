@@ -1,10 +1,9 @@
-﻿using BmeTodo.Api.Exceptions;
-using BmeTodo.Api.Models;
-using System;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+
+using BmeTodo.Api.Exceptions;
+using BmeTodo.Api.Models;
 
 namespace BmeTodo.Api.Services
 {
@@ -39,7 +38,7 @@ namespace BmeTodo.Api.Services
 
         public TodoItem GetTodo(int id)
         {
-            return _todos.FirstOrDefault(t => t.Id == id) 
+            return _todos.FirstOrDefault(t => t.Id == id)
                 ?? throw new EntityNotFoundException("A megadott azonosítóval nem taláható TodoItem");
         }
 
