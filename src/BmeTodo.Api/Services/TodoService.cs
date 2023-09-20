@@ -23,7 +23,7 @@ namespace BmeTodo.Api.Services
             new TodoItem
             {
                 Id = 2,
-                Deadline = new DateTime(2019, 12, 13, 12, 0, 0),
+                Deadline = DateTimeOffset.Now.AddDays(120),
                 Description = "Megírni a szakdolgozatot, ne feledd a határidő szorgalmi időszak 14. hetének péntekének dele.",
                 IsDone = true,
                 Priority = Priority.Normal,
